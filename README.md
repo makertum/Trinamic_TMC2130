@@ -15,6 +15,7 @@ This library makes it easy to configure the Trinamic TMC2130 stepper motor drive
 - set/unset bits in GCONF via `setGCONF(position,value)`
 - set/unset bits or values in CHOPCONF via `setCHOPCONF(position,value)`
 - set/unset bits or values in other registers will be added soon
+- if you can't wait, it's easy to add the missing bits yourself. Here's the [datasheet](http://www.trinamic.com/_articles/products/integrated-circuits/tmc2130/_datasheet/TMC2130_datasheet.pdf).
 
 ## How to use
     #include <SPI.h>
