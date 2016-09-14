@@ -5,8 +5,8 @@ This library makes it easy to configure the Trinamic TMC2130 stepper motor drive
 - setting microstep resolution via `setMicrosteps(n)`
 - setting holding current, running current and holding current delay via `setCurrent(ihold,irun,iholddelay)`
 - setting current reference via `setIscale(1) // 0: internal, 1: AIN`
-- update reset status via `readStatus()`, 
-- checking status via `isReset()`, `isError()`, `isStallguard()`, `isStandstill()`, 
+- update status via `readStatus()`, 
+- checking status via `isReset()`, `isError()`, `isStallguard()`, `isStandstill()`
 
 ## More functions
 - write to registers via `writeRegister(address,data)`
@@ -17,13 +17,22 @@ This library makes it easy to configure the Trinamic TMC2130 stepper motor drive
 - set/unset bits or values in other registers will be added soon
 
 ## How to use
-- `#include <SPI.h>`
-- `#include <Trinamic_TMC2130.h>`
-- `#define CS_PIN 53`
-- `Trinamic_TMC2130 tmc(CS_PIN);`
-- `tmc.init();`
-- `tmc.setCurrents(31,31,5); // sets all currents to maximum`
-- `tmc.setIRef(1); // sets I_REF to AIN`
+    #include <SPI.h>
+    #include <Trinamic_TMC2130.h>
+    
+    #define CS_PIN 53
+    
+    Trinamic_TMC2130 myStepper(CS_PIN);
+    
+    void setup(){
+      myStepper.init();
+      myStepper.setCurrents(31,31,5); // sets all currents to maximum
+      myStepper.setIRef(1); // sets I_REF to AIN
+    }
+    
+    void loop(){
+      // do something
+    }
 
 ## FAQ
 
@@ -32,7 +41,7 @@ This library makes it easy to configure the Trinamic TMC2130 stepper motor drive
 
 ### Why no Arduino examples
 - yet to come
-- 
+
 ### Can I run my RepRap with this?
 - yes, just install the library, download the [Marlin Fork](https://github.com/makertum/Marlin) and get going
 
