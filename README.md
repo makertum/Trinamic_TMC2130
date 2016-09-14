@@ -27,7 +27,7 @@ This library makes it easy to configure the Trinamic TMC2130 stepper motor drive
     
     void setup(){
       myStepper.init();
-      myStepper.setCurrents(31,31,5); // sets all currents to maximum
+      myStepper.setCurrent(31,31,5); // sets all currents to maximum
       myStepper.setIRef(1); // sets I_REF to AIN
     }
     
