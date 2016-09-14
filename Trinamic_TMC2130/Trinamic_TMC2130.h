@@ -20,7 +20,12 @@ v0.1 - it works
 #include "WProgram.h"
 #endif
 
-//#include <SPI.h>
+#include <SPI.h>
+
+// SPI
+#define TMC_SPI_CLOCK_DIVIDER SPI_CLOCK_DIV8
+#define TMC_SPI_DATA_MODE SPI_MODE3
+#define TMC_SPI_BIT_ORDER MSBFIRST
 
 // RW
 #define TMC_READ                         (0x00)
@@ -99,7 +104,7 @@ v0.1 - it works
 // mask the bits from the values we want to set
 
 const uint32_t TMC_CHOPCONF_MASKS[] = {
-  0b1111UL,  // 0 TOFF_TIME
+  0b1111UL, // 0 TOFF
   0b111UL,  // 1
   0b11UL,   // 2
   0b1UL,    // 3
@@ -114,7 +119,7 @@ const uint32_t TMC_CHOPCONF_MASKS[] = {
   0b1UL,    // 12 FAST_DECAY_MODE
   0b1UL,    // 13 RANDOM_TOFF
   0b1UL,    // 14 CHOPPER_MODE
-  0b11UL,   // 15 BLANK_TIME
+  0b11UL,   // 15 TBL
   0b1UL,    // 16
   0b1UL,    // 17 SENSE_CURRENT_SCALING
   0b1UL,    // 18 HIGH_VELOCITY_STEPS
@@ -130,7 +135,7 @@ const uint32_t TMC_CHOPCONF_MASKS[] = {
   0b1UL,    // 28 INTERPOLATE
   0b1UL,    // 29 DOUBLE_EDGE_PULSES
   0b1UL,    // 30 SHORT_PROTECTION
-  0b1UL    // 31
+  0b1UL     // 31
 };
 
 // CHOPCONF BIT OFFSETS
@@ -143,14 +148,14 @@ const uint32_t TMC_CHOPCONF_MASKS[] = {
 #define TMC_CHOPCONF_HIGH_VELOCITY_CHOPPER        (19)
 #define TMC_CHOPCONF_HIGH_VELOCITY_STEPS          (18)
 #define TMC_CHOPCONF_SENSE_CURRENT_SCALING        (17)
-#define TMC_CHOPCONF_BLANK_TIME                   (15)
+#define TMC_CHOPCONF_TBL                          (15)
 #define TMC_CHOPCONF_CHOPPER_MODE                 (14)
 #define TMC_CHOPCONF_RANDOM_TOFF                  (13)
 #define TMC_CHOPCONF_FAST_DECAY_MODE              (12)
 #define TMC_CHOPCONF_FAST_DECAY_TIMING            (11)
 #define TMC_CHOPCONF_HYSTERESIS_LOW               (7)
 #define TMC_CHOPCONF_HYSTERESIS_START             (4)
-#define TMC_CHOPCONF_TOFF_TIME                    (0)
+#define TMC_CHOPCONF_TOFF                         (0)
 
 // TIMING SETTINGS; NOT YET IMPLEMENTED
 
@@ -175,6 +180,7 @@ class Trinamic_TMC2130{
 public:
   Trinamic_TMC2130(uint8_t csPin);
   void init();
+  void initSPI();
   uint8_t readStatus();
   uint8_t readRegister( uint8_t address , uint32_t *data );
   uint8_t writeRegister( uint8_t address, uint32_t data );
@@ -184,14 +190,18 @@ public:
   uint8_t setCurrent(uint8_t ihold, uint8_t irun, uint8_t iholddelay);
   uint8_t setMicrosteps(uint8_t value);
   uint8_t setIScale(uint8_t value);
+  uint8_t setTBL(uint8_t value);
+  uint8_t setTOFF(uint8_t value);
   boolean isReset();
   boolean isError();
   boolean isStallguard();
   boolean isStandstill();
+  String debug();
 
 private:
   uint8_t _csPin;
   uint8_t _status;
+  String _debug;
 };
 
 #endif // TRINAMIC_TMC2130_H

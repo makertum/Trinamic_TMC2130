@@ -25,22 +25,29 @@ Trinamic_TMC2130::Trinamic_TMC2130(uint8_t csPin)
 {
   _csPin=csPin;
   _status=0;
+  _debug="";
 }
 
 // initialize the driver with its CS/SS pin
 void Trinamic_TMC2130::init() {
   pinMode(_csPin, OUTPUT);
   digitalWrite(_csPin, HIGH);
-  SPI.setDataMode(SPI_MODE3);
-  SPI.setBitOrder(MSBFIRST);
-  SPI.setClockDivider(SPI_CLOCK_DIV128);
-  SPI.begin();
+  initSPI();
   readStatus();
+}
+
+// initialize SPI
+void Trinamic_TMC2130::initSPI() {
+  SPI.setDataMode(TMC_SPI_DATA_MODE);
+  SPI.setBitOrder(TMC_SPI_BIT_ORDER);
+  SPI.setClockDivider(TMC_SPI_CLOCK_DIVIDER);
+  SPI.begin();
 }
 
 // read status
 uint8_t Trinamic_TMC2130::readStatus()
 {
+  initSPI();
   digitalWrite(_csPin, LOW);
 
   // read address
@@ -59,6 +66,7 @@ uint8_t Trinamic_TMC2130::readStatus()
 // read a register
 uint8_t Trinamic_TMC2130::readRegister(uint8_t address, uint32_t *data)
 {
+  initSPI();
   digitalWrite(_csPin, LOW);
 
   // read address
@@ -116,7 +124,7 @@ uint8_t Trinamic_TMC2130::alterRegister(uint8_t address, uint32_t data, uint32_t
 
   readRegister( address, &oldData );
 
-  newData = ( oldData&~mask ) | (data&mask);
+  newData = ( oldData&~mask ) | ( data&mask );
 
   writeRegister( address, newData );
 
@@ -162,28 +170,28 @@ uint8_t Trinamic_TMC2130::setMicrosteps(uint8_t value){
 
   switch(value){
     case 1:
-      data = 1;
+      data = 8;
     break;
     case 2:
-      data = 2;
-    break;
-    case 4:
-      data = 3;
-    break;
-    case 8:
-      data = 4;
-    break;
-    case 16:
-      data = 5;
-    break;
-    case 32:
-      data = 6;
-    break;
-    case 64:
       data = 7;
     break;
+    case 4:
+      data = 6;
+    break;
+    case 8:
+      data = 5;
+    break;
+    case 16:
+      data = 4;
+    break;
+    case 32:
+      data = 3;
+    break;
+    case 64:
+      data = 2;
+    break;
     case 128:
-      data = 8;
+      data = 1;
     break;
     case 256:
       data = 0;
@@ -191,6 +199,20 @@ uint8_t Trinamic_TMC2130::setMicrosteps(uint8_t value){
   }
 
   setCHOPCONF(TMC_CHOPCONF_MRES, data);
+
+  return _status;
+}
+
+uint8_t Trinamic_TMC2130::setTBL(uint8_t value){
+
+  setCHOPCONF(TMC_CHOPCONF_TBL, value);
+
+  return _status;
+}
+
+uint8_t Trinamic_TMC2130::setTOFF(uint8_t value){
+
+  setCHOPCONF(TMC_CHOPCONF_TOFF, value);
 
   return _status;
 }
@@ -223,4 +245,10 @@ boolean Trinamic_TMC2130::isStallguard()
 boolean Trinamic_TMC2130::isStandstill()
 {
   return _status&TMC_SPISTATUS_STANDSTILL_MASK ? true : false;
+}
+
+// get debug messages
+String Trinamic_TMC2130::debug()
+{
+  return _debug;
 }
