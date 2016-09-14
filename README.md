@@ -4,7 +4,7 @@ This library makes it easy to configure the Trinamic TMC2130 stepper motor drive
 ## Features
 - setting microstep resolution via `setMicrosteps(n)`
 - setting holding current, running current and holding current delay via `setCurrent(ihold,irun,iholddelay)`
-- setting current reference via `setIscale(1) // 0: internal, 1: AIN`
+- setting current reference via `setIScale(1) // 0: internal, 1: AIN`
 - update status via `readStatus()`, 
 - checking status via `isReset()`, `isError()`, `isStallguard()`, `isStandstill()`
 
@@ -28,7 +28,7 @@ This library makes it easy to configure the Trinamic TMC2130 stepper motor drive
     void setup(){
       myStepper.init();
       myStepper.setCurrent(31,31,5); // sets all currents to maximum
-      myStepper.setIRef(1); // sets I_REF to AIN
+      myStepper.setIScale(1); // sets I_REF to AIN
     }
     
     void loop(){
@@ -49,7 +49,7 @@ This library makes it easy to configure the Trinamic TMC2130 stepper motor drive
 ## Troubleshooting
 
 ### Why doesn't it work
-- If you're using the SilentStepsStick driver, did you `tmc.setIRef(1)`?
+- If you're using the SilentStepsStick driver, did you `tmc.setIScale(1)`?
 
 ## Disclaimer / License
 This is a work in progress. Any suggestions are heavily welcome. All scripts in this repository are licensed under the GNU Affero General Public License, version 3. Created by Moritz Walter 2016.
