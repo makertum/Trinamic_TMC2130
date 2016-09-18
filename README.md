@@ -23,7 +23,9 @@ This library makes it easy to configure the Trinamic TMC2130 stepper motor drive
 
 ## Configuration methods (write configuration parameters to the driver)
 All methods follow the naming convention set_<name of parameter as stated in the datasheet> respectively get_<name of parameter> and return the SPI status flags or the requested parameter.
-All methods expect the encoding stated in the datasheet - with the following exceptions:
+
+All methods expect the encoding stated in the datasheet, with the following exceptions:
+
 - `set_mres()` sets the microstepping resolution and expects the integer values 1, 2, 4, 8, 16, 32, 64, 128, 256 e.g. `set_mres(128)`
 - `set_IHOLD_IRUN()` sets the holding current, running current and holding delay, e.g. `set_IHOLD_IRUN(31,31,15)`
 - `set_MSLUTSTART()` sets `start_sin` and `start_sin90`
@@ -46,7 +48,7 @@ All methods expect the encoding stated in the datasheet - with the following exc
      uint8_t set_small_hysteresis(uint8_t value);
      uint8_t set_stop_enable(uint8_t value);
      uint8_t set_direct_mode(uint8_t value);
-
+     
      uint8_t set_IHOLD_IRUN(uint8_t ihold, uint8_t irun, uint8_t iholddelay);
      uint8_t set_TPOWERDOWN(uint8_t value);
      uint32_t get_TSTEP();
@@ -56,7 +58,7 @@ All methods expect the encoding stated in the datasheet - with the following exc
      uint8_t set_XDIRECT(int32_t value);
      int32_t get_XDIRECT();
      uint8_t set_VDCMIN(int32_t value);
-
+     
      uint8_t set_MSLUT0(uint32_t value);
      uint8_t set_MSLUT1(uint32_t value);
      uint8_t set_MSLUT2(uint32_t value);
@@ -69,7 +71,7 @@ All methods expect the encoding stated in the datasheet - with the following exc
      uint8_t set_MSLUTSTART(uint8_t start_sin, uint8_t start_sin90);
      uint16_t get_MSCNT();
      int32_t get_MSCURACT();
-
+     
      uint8_t set_dedge(uint8_t value);
      uint8_t set_diss2g(uint8_t value);
      uint8_t set_intpol(uint8_t value);
@@ -102,7 +104,7 @@ All methods expect the encoding stated in the datasheet - with the following exc
      uint8_t set_pwm_freq(uint8_t value);
      uint8_t set_PWM_GRAD(uint8_t value);
      uint8_t set_PWM_AMPL(uint8_t value);
-
+     
      uint8_t set_ENCM_CTRL(uint8_t value);
 
 ## Further methods
