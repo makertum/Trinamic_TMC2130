@@ -11,14 +11,15 @@ This library makes it easy to configure the Trinamic TMC2130 stepper motor drive
 - [ ] Some readable parameters are missing
 
 ## How to use
--	Please check out the example sketches for further information.
+- Please check out the example sketches for further information.
 - The [datasheet](http://www.trinamic.com/_articles/products/integrated-circuits/tmc2130/_datasheet/TMC2130_datasheet.pdf) contains a quick start guide
 
 ## Status methods (return boolean status information)
-  boolean isReset();
-  boolean isError();
-  boolean isStallguard();
-  boolean isStandstill();
+
+     boolean isReset();
+     boolean isError();
+     boolean isStallguard();
+     boolean isStandstill();
 
 ## Configuration methods (write configuration parameters to the driver)
 All methods follow the naming convention set_<name of parameter as stated in the datasheet> respectively get_<name of parameter> and return the SPI status flags or the requested parameter.
@@ -130,7 +131,8 @@ All methods expect the encoding stated in the datasheet - with the following exc
 
 ### Why doesn't it work
 - If you're using the SilentStepsStick driver, did you `myStepper.set_I_scale_analog(1)`?
-- Did you specify `myStepper.set_tbl(8)` and `myStepper.set_toff(1)` (example values)?
+- Did you specify `myStepper.set_tbl(1)` and `myStepper.set_toff(8)` (example values)?
+- Did you specify a motor current `myStepper.set_IHOLD_IRUN(31,31,5);`?
 
 ## Disclaimer / License
 This is a work in progress. Any suggestions are heavily welcome. All scripts in this repository are licensed under the GNU Affero General Public License, version 3. Created by Moritz Walter 2016.
