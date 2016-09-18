@@ -22,6 +22,7 @@ This library makes it easy to configure the Trinamic TMC2130 stepper motor drive
     boolean isStandstill();
 
 ## Configuration methods (write configuration parameters to the driver)
+### Note
 All methods follow the naming convention set_<name of parameter as stated in the datasheet> respectively get_<name of parameter> and return the SPI status flags or the requested parameter.
 
 All methods expect the encoding stated in the datasheet, with the following exceptions:
@@ -30,6 +31,8 @@ All methods expect the encoding stated in the datasheet, with the following exce
 - `set_IHOLD_IRUN()` sets the holding current, running current and holding delay, e.g. `set_IHOLD_IRUN(31,31,15)`
 - `set_MSLUTSTART()` sets `start_sin` and `start_sin90`
 - `set_DCCTRL()` sets the `dc_time` and `dc_sg` 
+
+### Methods
 
     uint8_t set_I_scale_analog(uint8_t value);
     uint8_t set_internal_Rsense(uint8_t value);
