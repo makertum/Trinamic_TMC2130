@@ -61,7 +61,8 @@ public:
   uint8_t set_TPWMTHRS(uint32_t value);
   uint8_t set_TCOOLTHRS(uint32_t value);
   uint8_t set_THIGH(uint32_t value);
-  uint8_t set_XDIRECT(int32_t value);
+  uint8_t set_XDIRECT(uint32_t value);
+  uint8_t set_XDIRECT(int16_t coil_a, int16_t coil_b);
   int32_t get_XDIRECT();
   uint8_t set_VDCMIN(int32_t value);
 

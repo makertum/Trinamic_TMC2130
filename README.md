@@ -26,6 +26,7 @@ All methods expect the encoding stated in the datasheet - with the following exc
 - `set_IHOLD_IRUN()` sets the holding current, running current and holding delay, e.g. `set_IHOLD_IRUN(31,31,15)`
 - `set_MSLUTSTART()` sets `start_sin` and `start_sin90`
 - `set_DCCTRL()` sets the `dc_time` and `dc_sg` 
+- `set_XDIRECT()` features an alias that lets you pass the currents for `coil_a` and `coil_b` as 16 bit signed integers (the range is still +- 254, though) e.e. `set_XDIRECT(254,254)`
 
 	uint8_t set_I_scale_analog(uint8_t value);
 	uint8_t set_internal_Rsense(uint8_t value);
@@ -51,7 +52,8 @@ All methods expect the encoding stated in the datasheet - with the following exc
 	uint8_t set_TPWMTHRS(uint32_t value);
 	uint8_t set_TCOOLTHRS(uint32_t value);
 	uint8_t set_THIGH(uint32_t value);
-	uint8_t set_XDIRECT(int32_t value);
+	uint8_t set_XDIRECT(uint32_t value);
+	uint8_t set_XDIRECT(int16_t coil_a, int16_t coil_b);
 	int32_t get_XDIRECT();
 	uint8_t set_VDCMIN(int32_t value);
 

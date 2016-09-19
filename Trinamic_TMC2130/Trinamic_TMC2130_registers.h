@@ -124,7 +124,16 @@ v0.1 - it works
 // no offsets required
 #define TMC_THIGH_MASK                   (0b11111111111111111111UL)
 
-// XDIRECT
+// XDIRECT OFFSETS
+// for shifting incoming values to the right register position
+#define TMC_XDIRECT_COIL_A               (0)
+#define TMC_XDIRECT_COIL_B               (16)
+
+// XDIRECT MASKS
+// mask the bits from the values we want to set
+#define TMC_XDIRECT_MASK                 (0xFFFFFFFFUL)
+#define TMC_XDIRECT_COIL_A_MASK          (0xFFFFUL)
+#define TMC_XDIRECT_COIL_B_MASK          (0xFFFFUL)
 // no offsets required
 // needs no mask
 

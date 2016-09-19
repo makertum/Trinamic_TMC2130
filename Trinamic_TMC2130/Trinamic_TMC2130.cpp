@@ -379,18 +379,39 @@ uint8_t Trinamic_TMC2130::set_THIGH(uint32_t value)
 // XDIRECT
 //////////
 
-uint8_t Trinamic_TMC2130::set_XDIRECT(int32_t value)
+uint8_t Trinamic_TMC2130::set_XDIRECT(int16_t coil_a, int16_t coil_b)
 {
-  write_REG(TMC_REG_XDIRECT, value);
+  uint32_t data;
+
+  data = 0x0;
+  data |= ( coil_b & TMC_XDIRECT_COIL_B_MASK );
+  data = data << TMC_XDIRECT_COIL_B;
+  data |= ( coil_a & TMC_XDIRECT_COIL_A_MASK );
+  data &= TMC_XDIRECT_MASK;
+
+  write_REG(TMC_REG_XDIRECT, data);
+
+  return _status;
+}
+
+uint8_t Trinamic_TMC2130::set_XDIRECT(uint32_t value)
+{
+  uint32_t data;
+
+  data = value;// & TMC_XDIRECT_MASK;
+
+  write_REG(TMC_REG_XDIRECT, data);
 
   return _status;
 }
 
 int32_t Trinamic_TMC2130::get_XDIRECT()
 {
-  int32_t data;
+  uint32_t data;
 
   read_REG(TMC_REG_XDIRECT, &data);
+
+  data &= TMC_XDIRECT_MASK;
 
   return data;
 }
@@ -521,7 +542,7 @@ uint16_t Trinamic_TMC2130::get_MSCNT()
 
 int32_t Trinamic_TMC2130::get_MSCURACT()
 {
-  int32_t data;
+  uint32_t data;
 
   read_REG(TMC_REG_MSCURACT, &data);
 
