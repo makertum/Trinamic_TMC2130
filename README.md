@@ -79,7 +79,7 @@ All methods expect the encoding stated in the datasheet, with the following exce
     uint8_t set_dedge(uint8_t value);
     uint8_t set_diss2g(uint8_t value);
     uint8_t set_intpol(uint8_t value);
-    uint8_t set_mres(uint8_t value);
+    uint16_t set_mres(uint8_t value);
     uint8_t set_sync(uint8_t value);
     uint8_t set_vhighchm(uint8_t value);
     uint8_t set_vhighfs(uint8_t value);
