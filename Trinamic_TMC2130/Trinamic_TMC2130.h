@@ -83,7 +83,7 @@ public:
   uint8_t set_dedge(uint8_t value);
   uint8_t set_diss2g(uint8_t value);
   uint8_t set_intpol(uint8_t value);
-  uint8_t set_mres(uint8_t value);
+  uint8_t set_mres(uint16_t value);
   uint8_t set_sync(uint8_t value);
   uint8_t set_vhighchm(uint8_t value);
   uint8_t set_vhighfs(uint8_t value);
