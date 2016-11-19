@@ -15,7 +15,7 @@ v0.1 - it works
 #include <SPI.h>
 #include <Trinamic_TMC2130.h>
 
-#define BAUDRATE 125000
+#define BAUDRATE 250000
 
     ////////////////////
    //
@@ -28,11 +28,32 @@ v0.1 - it works
 // Then, uncomment configuration below to enable specific settings.
 // Once flashed, the sketch sends your configuration to the drivers in regular intervals.
 
+   
+    ////////////////////
+   //
+  //    CONFIGURATION PIN
+ //
+//////////////////////
+
+// config pinout arduino mega
+//SDI = MOSI pin51
+//SDO = MISO pin50
+//SCK = clock pin52
+// CS = communication isp pin 53
+
+// config pinout arduino uno
+//SDI = MOSI pin11
+//SDO = MISO pin12
+//SCK = clock pin13
+// CS = communication isp pin 10
+
+
     ////////////////////
    //
   //    CONFIGURATION
  //
 ////////////////////
+
 
 //////////
 // STEPPER PIN CONFIGURATION
@@ -44,7 +65,8 @@ v0.1 - it works
 //#define STEPPERY_ENABLE
 
 // cable select pins for the steppers
-#define X_CS_PIN 53
+#define X_CS_PIN 53 // for arduino mega
+//#define X_CS_PIN 10 // for arduino uno
 #define Y_CS_PIN 49
 
 //////////
@@ -56,7 +78,7 @@ v0.1 - it works
 #define GLOBAL_I_SCALE_ANALOG 1 // [0,1] 0: Normal, 1: AIN
 //#define GLOBAL_INTERNAL_RSENSE 0 // [0,1]0: Normal, 1: Internal
 #define GLOBAL_EN_PWM_MODE 0 //[0,1] 0: Normal, 1: stealthChop with velocity threshold
-//#define GLOBAL_ENC_COMMUTATION 0 //
+//#define GLOBAL_ENC_COMMUTATION 0 // 0=OFF / 1=ON
 #define GLOBAL_SHAFT 0 // 0: normal, 1: invert
 //#define GLOBAL_DIAG0_ERROR 0 //
 //#define GLOBAL_DIAG0_OTPW 0 //
