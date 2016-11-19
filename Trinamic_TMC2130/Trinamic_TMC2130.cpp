@@ -579,7 +579,7 @@ uint8_t Trinamic_TMC2130::set_intpol(uint8_t value)
 // setting the microstep resolution
 uint8_t Trinamic_TMC2130::set_mres(uint16_t value)
 {
-  uint8_t data;
+  uint8_t data = 0;
 
   switch(value){
     case 1:
@@ -605,9 +605,6 @@ uint8_t Trinamic_TMC2130::set_mres(uint16_t value)
     break;
     case 128:
       data = 1;
-    break;
-    case 256:
-      data = 0;
     break;
   }
 
