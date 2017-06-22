@@ -724,56 +724,56 @@ uint8_t Trinamic_TMC2130::alter_COOLCONF(uint32_t data, uint32_t mask)
 uint8_t Trinamic_TMC2130::set_COOLCONF(uint8_t position, uint8_t value)
 {
 
-  alter_COOLCONF( uint32_t(value)<<position, TMC_CHOPCONF_MASKS[position]<<position);
+  alter_COOLCONF( uint32_t(value)<<position, TMC_COOLCONF_MASKS[position]<<position);
 
   return _status;
 }
 
 uint8_t Trinamic_TMC2130::set_sfilt(uint8_t value)
 {
-  set_CHOPCONF(TMC_COOLCONF_SFILT, value);
+  set_COOLCONF(TMC_COOLCONF_SFILT, value);
 
   return _status;
 }
 
 uint8_t Trinamic_TMC2130::set_sgt(uint8_t value)
 {
-  set_CHOPCONF(TMC_COOLCONF_SGT, value);
+  set_COOLCONF(TMC_COOLCONF_SGT, value);
 
   return _status;
 }
 
 uint8_t Trinamic_TMC2130::set_seimin(uint8_t value)
 {
-  set_CHOPCONF(TMC_COOLCONF_SEIMIN, value);
+  set_COOLCONF(TMC_COOLCONF_SEIMIN, value);
 
   return _status;
 }
 
 uint8_t Trinamic_TMC2130::set_sedn(uint8_t value)
 {
-  set_CHOPCONF(TMC_COOLCONF_SEDN, value);
+  set_COOLCONF(TMC_COOLCONF_SEDN, value);
 
   return _status;
 }
 
 uint8_t Trinamic_TMC2130::set_semax(uint8_t value)
 {
-  set_CHOPCONF(TMC_COOLCONF_SEMAX, value);
+  set_COOLCONF(TMC_COOLCONF_SEMAX, value);
 
   return _status;
 }
 
 uint8_t Trinamic_TMC2130::set_seup(uint8_t value)
 {
-  set_CHOPCONF(TMC_COOLCONF_SEUP, value);
+  set_COOLCONF(TMC_COOLCONF_SEUP, value);
 
   return _status;
 }
 
 uint8_t Trinamic_TMC2130::set_semin(uint8_t value)
 {
-  set_CHOPCONF(TMC_COOLCONF_SEMIN, value);
+  set_COOLCONF(TMC_COOLCONF_SEMIN, value);
 
   return _status;
 }
