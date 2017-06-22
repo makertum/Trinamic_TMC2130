@@ -606,6 +606,10 @@ uint8_t Trinamic_TMC2130::set_mres(uint16_t value)
     case 128:
       data = 1;
     break;
+	case 256:
+  default:
+		data = 0;
+		break;
   }
 
   set_CHOPCONF(TMC_CHOPCONF_MRES, data);
