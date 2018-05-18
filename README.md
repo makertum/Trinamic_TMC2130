@@ -12,7 +12,7 @@ This library makes it easy to configure the Trinamic TMC2130 stepper motor drive
 
 ## How to use
 - Please check out the example sketches for further information.
-- The [datasheet](http://www.trinamic.com/_articles/products/integrated-circuits/tmc2130/_datasheet/TMC2130_datasheet.pdf) contains a quick start guide
+- The [datasheet](https://www.trinamic.com/fileadmin/assets/Products/ICs_Documents/TMC2130_datasheet.pdf) contains a quick start guide
 
 ## Status methods (return boolean status information)
 
